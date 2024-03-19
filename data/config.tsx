@@ -53,6 +53,10 @@ const siteConfig = {
         href: '/blog',
       },
       {
+        id: 'faq',
+        label: 'FAQ',
+      },
+      {
         label: 'Try Now',
         href: 'https://app.cleek.id',
         variant: 'primary',
