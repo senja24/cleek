@@ -1,39 +1,60 @@
 import { Button } from '@chakra-ui/react'
 import { Link } from '@saas-ui/react'
-import { NextSeoProps } from 'next-seo'
+import { NextSeoProps } from 'next-seo';
 import { FaGithub, FaTwitter } from 'react-icons/fa'
 import { FiCheck } from 'react-icons/fi'
 import { Logo } from './logo'
 
+const title = 'Cleek — Your own AI chat service';
+const description = 'Cleek - AI infrastructure for everyone, extensible (Function Calling), high-performance chatbot framework. Get your own AI chat service with OpenAI & LLM web application.';
+
 const siteConfig = {
   logo: Logo,
   seo: {
-    title: 'Saas UI',
-    description: 'The React component library for startups',
+    title: title,
+    description: description,
+    openGraph: {
+      description: description,
+      images: [
+        {
+          alt: title,
+          height: 360,
+          url: 'https://res.cloudinary.com/dndxf5krb/image/upload/f_auto,q_auto/v1/file/assets/a8jj9neoqlfnrgbvvxqn',
+          width: 480,
+        },
+        {
+          alt: title,
+          height: 720,
+          url: 'https://res.cloudinary.com/dndxf5krb/image/upload/f_auto,q_auto/v1/file/assets/u9s04wkzyrfrav5lkzr0',
+          width: 960,
+        },
+      ],
+      locale: 'en-US',
+      siteName: title,
+      title: title,
+      type: 'website',
+    },
+    twitter: {
+      cardType: 'summary_large_image',
+      site: '@ikaagussetiawan',
+      handle: '@ikaagussetiawan',
+    },
   } as NextSeoProps,
   termsUrl: '#',
   privacyUrl: '#',
   header: {
     links: [
       {
-        id: 'features',
-        label: 'Features',
+        label: 'Home',
+        href: '/',
       },
       {
-        id: 'pricing',
-        label: 'Pricing',
+        label: 'Blog',
+        href: '/blog',
       },
       {
-        id: 'faq',
-        label: 'FAQ',
-      },
-      {
-        label: 'Login',
-        href: '/login',
-      },
-      {
-        label: 'Sign Up',
-        href: '/signup',
+        label: 'Try Now',
+        href: 'https://app.cleek.id',
         variant: 'primary',
       },
     ],
@@ -42,26 +63,26 @@ const siteConfig = {
     copyright: (
       <>
         Built by{' '}
-        <Link href="https://twitter.com/Pagebakers">Eelco Wiersma</Link>
+        <Link href="https://cleek.id/">Cleek</Link>
       </>
     ),
     links: [
       {
-        href: 'mailto:hello@saas-ui.dev',
+        href: 'mailto:support@cleek.id',
         label: 'Contact',
       },
       {
-        href: 'https://twitter.com/saas_js',
+        href: 'https://twitter.com/ikaagussetiawan',
         label: <FaTwitter size="14" />,
       },
       {
-        href: 'https://github.com/saas-js/saas-ui',
+        href: 'https://github.com/senja24/cleek',
         label: <FaGithub size="14" />,
       },
     ],
   },
   signup: {
-    title: 'Start building with Saas UI',
+    title: 'Start building with Cleek',
     features: [
       {
         icon: FiCheck,
