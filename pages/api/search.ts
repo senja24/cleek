@@ -1,41 +1,48 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
+import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { getAuthors } from './authors'
-import { getCategories } from './categories'
-import { getPosts } from './posts'
-import { getTags } from './tags'
+import { getPosts } from './posts';
+
+interface SearchResult {
+  type: string;
+  author: string;
+  category: string;
+  tags: string[];
+  // Add other required properties here
+  [x: string]: unknown;
+}
 
 export function getSearch(fields: string[] | undefined = undefined) {
-  const content: SearchResult[] = []
+  const content: SearchResult[] = [];
 
   function processData(
     func: (fields: string[] | undefined) => { [x: string]: unknown }[],
-    type: 'author' | 'category' | 'post' | 'tag'
+    type: 'post'
   ) {
-    const getData = func(['title', 'category', 'excerpt'])
+    const getData = func(['excerpt']);
 
     for (let i = 0; i < getData.length; i++) {
-      const element = getData[i]
+      const element = getData[i];
 
-      element['type'] = type
+      const searchResult: SearchResult = {
+        type,
+        author: element.author as string,
+        category: element.category as string,
+        tags: element.tags as string[],
+        // Add other required properties here
+        ...element,
+      };
 
-      content.push(element)
+      content.push(searchResult);
     }
   }
 
   if (!fields || fields.length === 0) {
-    processData(getPosts, 'post')
-    processData(getCategories, 'category')
-    processData(getTags, 'tag')
-    processData(getAuthors, 'author')
+    processData(getPosts, 'post');
   } else {
-    if (fields.includes('post')) processData(getPosts, 'post')
-    if (fields.includes('category')) processData(getCategories, 'category')
-    if (fields.includes('tag')) processData(getTags, 'tag')
-    if (fields.includes('author')) processData(getAuthors, 'author')
+    if (fields.includes('post')) processData(getPosts, 'post');
   }
 
-  return content
+  return content;
 }
 
 export default async function handler(
@@ -43,12 +50,12 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method !== 'GET') {
-    res.status(405).end()
+    res.status(405).end();
   }
 
-  const queryFields = req.query?.fields?.toString().split(',')
+  const queryFields = req.query?.fields?.toString().split(',');
 
-  const content = getSearch(queryFields)
+  const content = getSearch(queryFields);
 
-  res.status(200).json(content)
+  res.status(200).json(content);
 }
