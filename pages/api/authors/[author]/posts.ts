@@ -12,21 +12,21 @@ export function getPostsByAuthor(
   const slugs = fs.readdirSync(postsDirectory)
 
   const spreadFields =
-    fields && fields.length > 0
+    fields && fields?.length > 0
       ? [...fields, 'title', 'category', 'author', 'excerpt', 'thumbnail']
       : []
 
   const content = slugs
     .map((slug) => getPostBySlug(slug, spreadFields, nested))
-    .sort((a, b) => (a.publish_date > b.publish_date ? -1 : 1))
+    .sort((a, b) => (a?.publish_date > b?.publish_date ? -1 : 1))
 
   for (let i = content.length - 1; i >= 0; i--) {
     const post = content[i]
 
-    if (post.author !== author && post.author.slug !== author) {
+    if (post?.author !== author && post?.author?.slug !== author) {
       content.splice(i, 1)
     } else {
-      delete post.author
+      delete post?.author
     }
   }
 
