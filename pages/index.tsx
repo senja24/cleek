@@ -306,7 +306,7 @@ export async function getStaticProps() {
         title: " 🚀 News: Cleek now supports google Gemini Pro!",
         description:
           '',
-        href: "/posts/cleek-support-gemini-pro",
+        href: "/blog/cleek-support-gemini-pro",
         action: false,
       },
     },
