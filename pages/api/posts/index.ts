@@ -5,8 +5,6 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import fs from 'fs'
 import { join } from 'path'
 
-import { getCategoryBySlug } from '../categories'
-import { getTagBySlug } from '../tags'
 
 export const postsDirectory = join(process.cwd(), '_content/posts')
 
@@ -22,26 +20,9 @@ export function getPostBySlug(
   const fileContents = fs.readFileSync(fullPath, 'utf8')
   const { data, content } = matter(fileContents)
 
-  const category =
-    nested &&
-    data?.category &&
-    (!fields || fields.length === 0 || fields.includes('category'))
-      ? getCategoryBySlug(data.category, ['title'])
-      : data.category
-
-  const tags: MarkdownFileObject[] = []
-
-  if (nested && data.tags && data.tags.length > 0) {
-    data.tags.forEach((tag: string) => tags.push(getTagBySlug(tag, ['title'])))
-  } else if (data?.tags) {
-    tags.push(...data.tags)
-  }
-
   const theData: { [x: string]: unknown } = {
     ...data,
     slug: realSlug,
-    category,
-    tags,
     content: md().render(content),
   }
 

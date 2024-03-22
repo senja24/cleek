@@ -7,10 +7,9 @@ import site from 'site.config'
 
 export default function Post({
   post,
-  categoryPosts,
+
 }: {
   post: NestedPostObject,
-  categoryPosts: NestedPostObject[]
 }) {
   const {
     title,
@@ -18,8 +17,6 @@ export default function Post({
     published_at,
     thumbnail,
     excerpt,
-    category,
-    tags,
   } = post
 
   return (
@@ -90,7 +87,6 @@ export const getStaticPaths: GetStaticPaths = () => {
       return {
         params: {
           post: post.slug as string,
-          category: (post.category as { [x: string]: unknown }).slug as string,
         },
       }
     }),
@@ -102,7 +98,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const params = context.params
 
   let post: MarkdownFileObject
-  const categoryPosts = []
 
   if (params?.post) {
     post = getPostBySlug(params.post.toString(), [], true)
@@ -113,7 +108,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
   return {
     props: {
       post,
-      categoryPosts,
     },
   }
 }
