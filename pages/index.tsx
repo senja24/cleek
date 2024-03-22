@@ -52,7 +52,7 @@ const Home: NextPage = () => {
       <SEO
         title="Cleek — Your own AI chat service"
         description="Cleek - AI infrastructure for everyone, extensible (Function Calling), high-performance chatbot framework. Get your own AI chat service with OpenAI & LLM web application."
-        />
+      />
       <Box>
         <HeroSection />
         <HighlightsSection />
@@ -80,11 +80,10 @@ const HeroSection: React.FC = () => {
               <Box overflow="hidden" height="100%">
                 <Image
                   src="/static/screenshots/cleek.png"
-                  layout="responsive"
                   width={1200}
                   height={762}
                   alt="Screenshot of a Chat in Cleek"
-                  quality="75"
+                  quality={75}
                   priority
                 />
               </Box>

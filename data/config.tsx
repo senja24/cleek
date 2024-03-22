@@ -45,16 +45,14 @@ const siteConfig = {
   header: {
     links: [
       {
+        id: 'home',
         label: 'Home',
         href: '/',
       },
       {
+        id: 'blog',
         label: 'Blog',
         href: '/blog',
-      },
-      {
-        id: 'faq',
-        label: 'FAQ',
       },
       {
         label: 'Try Now',

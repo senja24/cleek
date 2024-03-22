@@ -8,9 +8,7 @@ const faq = {
       q: 'Is this app free?',
       a: (
         <>
-          Cleek.id is free to use with some basic features. 
-          You will need to have a working OpenAI API Key in order to use the app. When you use the OpenAI API Key, you pay directly to OpenAI for the amount of credits/tokens you use. 
-          Cleek.id has premium features that can be unlocked with a one-time purchase.
+          Cleek.id is free to use. You will need to have a working OpenAI API Key in order to use the app. When you use the OpenAI API Key, you pay directly to OpenAI for the amount of credits/tokens you use.
         </>
       ),
     },

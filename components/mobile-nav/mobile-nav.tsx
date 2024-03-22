@@ -52,12 +52,10 @@ function NavLink({ href, children, isActive, ...rest }: NavLinkProps) {
       px="8"
       py="3"
       transition="0.2s all"
-      fontWeight={isActive ? 'semibold' : 'medium'}
-      borderColor={isActive ? 'purple.400' : undefined}
+      fontWeight='medium'
       borderBottomWidth="1px"
-      color={isActive ? 'white' : undefined}
       _hover={{
-        bg: isActive ? 'purple.500' : bgActiveHoverColor,
+        bg: isActive ? bgActiveHoverColor : bgActiveHoverColor,
       }}
       {...rest}
     >
