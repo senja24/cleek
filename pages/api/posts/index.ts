@@ -76,9 +76,9 @@ export default async function handler(
 
   const queryFields = req.query?.fields?.toString()
 
-  const fields = []
+  const fields: string[] = [];
   if (queryFields) {
-    fields.push(...queryFields.split(','))
+    fields.push(...queryFields.split(','));
   }
 
   const content = getPosts(fields)
