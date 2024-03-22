@@ -1,5 +1,5 @@
 import type { AppProps } from "next/app";
-
+import { Analytics } from "@vercel/analytics/react"
 import { SaasProvider } from "@saas-ui/react";
 import { Layout } from "components/layout";
 import 'theme/blog.css'
@@ -10,13 +10,14 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <SaasProvider theme={theme}>
-        <Layout
-          announcementProps={announcement}
-          headerProps={header}
-          footerProps={footer}
-        >
-          <Component {...pageProps} />
-        </Layout>
+      <Analytics />
+      <Layout
+        announcementProps={announcement}
+        headerProps={header}
+        footerProps={footer}
+      >
+        <Component {...pageProps} />
+      </Layout>
     </SaasProvider>
   );
 }

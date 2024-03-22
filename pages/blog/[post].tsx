@@ -18,7 +18,6 @@ export default function Post({
     published_at,
     thumbnail,
     excerpt,
-    author,
     category,
     tags,
   } = post

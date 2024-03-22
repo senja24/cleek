@@ -5,7 +5,6 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import fs from 'fs'
 import { join } from 'path'
 
-import { getAuthorBySlug } from '../authors'
 import { getCategoryBySlug } from '../categories'
 import { getTagBySlug } from '../tags'
 
@@ -30,19 +29,6 @@ export function getPostBySlug(
       ? getCategoryBySlug(data.category, ['title'])
       : data.category
 
-  const author =
-    nested &&
-    data?.author &&
-    (!fields || fields.length === 0 || fields.includes('author'))
-      ? getAuthorBySlug(data.author, [
-          'title',
-          'twitter',
-          'short_bio',
-          'image',
-          'content',
-        ])
-      : data.author
-
   const tags: MarkdownFileObject[] = []
 
   if (nested && data.tags && data.tags.length > 0) {
@@ -54,7 +40,6 @@ export function getPostBySlug(
   const theData: { [x: string]: unknown } = {
     ...data,
     slug: realSlug,
-    author,
     category,
     tags,
     content: md().render(content),
